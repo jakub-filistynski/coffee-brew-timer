@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: "/coffee-brew-timer",
+  basePath: process.env.BASE_PATH,
   output: "export",  // <=== enables static exports
 };
 
