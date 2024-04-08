@@ -5,5 +5,5 @@ export type Settings = {
 
 export type Step = {
     message: string
-    duration: number
+    deadline: number
 }
