@@ -20,9 +20,9 @@ export const getHoffmanBetterOneCupMethodSteps = (totalWaterAmount: number): Arr
     { deadline: 120, message: `Add ${stepWaterAmount} g of water in 10 seconds` },
     { deadline: 125, message: "Gentle swirl the drip for 5 seconds" },
     {
-      deadline: 300,
+      deadline: 210,
       message:
-        "Wait for the water to flow (Ideally, the water should drain to +- 3:00 minutes)",
+        "Wait for the water to flow (Ideally, the water should drain to +- 3:30 minutes)",
     }, // The last step without deadline
   ];
 };
