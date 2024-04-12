@@ -1,12 +1,12 @@
 "use client";
 
-import { Step } from "@/app/lib/definitions";
+import { BrewingStep } from "@/app/lib/definitions";
 import { PauseResumeButton } from "@/app/ui/timer/pauseResumeButton";
 import { useStopwatch } from "react-timer-hook";
 import { useState, useEffect } from "react";
 
 type Props = {
-  steps: Array<Step>;
+  steps: Array<BrewingStep>;
 };
 
 export function Timer({ steps }: Props) {
@@ -24,7 +24,7 @@ export function Timer({ steps }: Props) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
   useEffect(() => {
-    let currentStep: Step = steps[currentStepIndex];
+    let currentStep: BrewingStep = steps[currentStepIndex];
     if (currentStepIndex === steps.length - 1) {
       return;
     }
@@ -72,7 +72,7 @@ export function Timer({ steps }: Props) {
         </div>
         <span className="text-2xl sm:text-4xl ">
           <b>Next step: </b>{" "}
-          {currentStepIndex === steps.length
+          {currentStepIndex + 1 === steps.length
             ? ""
             : steps[currentStepIndex + 1].message}
         </span>

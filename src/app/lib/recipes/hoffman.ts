@@ -1,6 +1,6 @@
-import {Step} from "@/app/lib/definitions";
+import {BrewingStep} from "@/app/lib/definitions";
 
-export const getHoffmanBetterOneCupMethodSteps = (waterAmount: number): Array<Step> => {
+export const getHoffmanBetterOneCupMethodSteps = (waterAmount: number): Array<BrewingStep> => {
   return [
     {
       message: `Add ${waterAmount} g of water in 10 seconds`,

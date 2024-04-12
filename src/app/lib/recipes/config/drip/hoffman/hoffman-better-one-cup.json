@@ -1,0 +1,81 @@
+{
+  "author": "Hoffman",
+  "name": "A Better 1 Cup V60 Technique",
+  "source": "https://www.youtube.com/watch?v=1oB1oDrDkHM",
+  "description": "",
+  "recipeSteps": [
+    {
+      "messageTemplate": "Add {stepWaterAmount} g of water in 10 seconds",
+      "duration": 10,
+      "amount": 50,
+      "stage": "Bloom",
+      "commentTemplate": "Flow rate about {stepWaterAmount / 10} g/s"
+    },
+    {
+      "messageTemplate": "Swirl the drip for 5 seconds",
+      "duration": 5,
+      "amount": null,
+      "stage": "Bloom",
+      "commentTemplate": "Not too gentle"
+    },
+    {
+      "messageTemplate": "Wait for 30 seconds",
+      "duration": 30,
+      "stage": "Bloom",
+      "commentTemplate": "Enjoy CO2 getting released from grounds"
+    },
+    {
+      "messageTemplate": "Add {stepWaterAmount} g of water in 15 seconds",
+      "duration": 15,
+      "amount": 50,
+      "stage": "Second pour"
+    },
+    {
+      "messageTemplate": "Wait for 10 seconds",
+      "duration": 10,
+      "stage": "Second pour"
+    },
+    {
+      "messageTemplate": "Add {stepWaterAmount} g of water in 10 seconds",
+      "duration": 10,
+      "amount": 50,
+      "stage": "Third pour",
+      "commentTemplate": "Flow rate about {stepWaterAmount / 10} g/s"
+    },
+    {
+      "messageTemplate": "Wait for 10 seconds",
+      "duration": 10,
+      "stage": "Third pour"
+    },
+    {
+      "messageTemplate": "Add {stepWaterAmount} g of water in 10 seconds",
+      "duration": 10,
+      "amount": 50,
+      "stage": "4th pour",
+      "commentTemplate": "Flow rate about {stepWaterAmount / 10} g/s"
+    },
+    {
+      "messageTemplate": "Wait for 10 seconds",
+      "duration": 10,
+      "stage": "4th pour"
+    },
+    {
+      "messageTemplate": "Add remaining {stepWaterAmount} g of water in 10 seconds",
+      "duration": 10,
+      "amount": 50,
+      "stage": "Last pour",
+      "commentTemplate": "Flow rate about {stepWaterAmount / 10} g/s"
+    },
+    {
+      "messageTemplate": "Gentle swirl the drip for 5 seconds",
+      "duration": 5,
+      "stage": "Drawdown"
+    },
+    {
+      "messageTemplate": "Wait for the water to flow",
+      "duration": 85,
+      "stage": "Drawdown",
+      "commentTemplate": "Drawdown should ideally finish around 3:00-4:00, but taste is the most important thing!"
+    }
+  ]
+}
