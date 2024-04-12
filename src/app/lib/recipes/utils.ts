@@ -20,6 +20,7 @@ export const getRawRecipes = (): Map<string, Recipe> => {
 
 
 export const evalRecipeSchemaTemplateString = (templateString: string | undefined, stepWaterAmount: number): string => {
+  // todo: replace eval!!!!!
   if (templateString == null) {
     return ""
   }
