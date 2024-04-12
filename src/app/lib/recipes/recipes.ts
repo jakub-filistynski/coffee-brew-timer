@@ -1,5 +1,6 @@
 export const recipesConfigMap: Map<string, string> = new Map([
-  ["Hoffman - better one cup", "/drip/hoffman/hoffman-better-one-cup.json"],
+  ["Hoffmann - better one cup", "/drip/hoffmann/hoffmann-better-one-cup.json"],
+  ["Hoffmann - ultimate V60 technique", "/drip/hoffmann/hoffmann-ultimate-v60.json"]
 ]);
 
 

@@ -1,0 +1,63 @@
+{
+  "author": "Hoffman",
+  "name": "Ultimate V60 Technique",
+  "source": "https://www.youtube.com/watch?v=AI4ynXzkSQo",
+  "description": "",
+  "recipeSteps": [
+    {
+      "messageTemplate": "Add {stepWaterAmount} g of water in 10 seconds",
+      "duration": 10,
+      "amount": 60,
+      "stage": "Bloom",
+      "commentTemplate": "Make sure to wet grounds as evenly as possible"
+    },
+    {
+      "messageTemplate": "Swirl the drip for 5 seconds",
+      "duration": 5,
+      "stage": "Bloom",
+      "commentTemplate": "Not too gentle"
+    },
+    {
+      "messageTemplate": "Wait for 30 seconds",
+      "duration": 30,
+      "stage": "Bloom",
+      "commentTemplate": "Enjoy CO2 getting released from grounds"
+    },
+    {
+      "messageTemplate": "Add {stepWaterAmount} g of water in 30 seconds",
+      "duration": 30,
+      "amount": 240,
+      "stage": "60% total water pour",
+      "commentTemplate": "Flow rate about {stepWaterAmount / 30} g/s"
+    },
+    {
+      "messageTemplate": "Add {stepWaterAmount} g of water in 30 seconds",
+      "duration": 30,
+      "amount": 200,
+      "stage": "100% total water pour",
+      "commentTemplate": "Flow rate about {stepWaterAmount / 30} g/s"
+    },
+    {
+      "messageTemplate": "Stir 1x clockwise and 1x anticlockwise with spoon",
+      "duration": 10,
+      "commentTemplate": "This knocks off grounds from side wall",
+      "stage": "Drawdown"
+    },
+    {
+      "messageTemplate": "Allow V60 to drain a little",
+      "duration": 15,
+      "stage": "Drawdown"
+    },
+    {
+      "messageTemplate": "Give V60 a gentle swirl",
+      "duration": 5,
+      "stage": "Drawdown"
+    },
+    {
+      "messageTemplate": "Wait for the water to flow",
+      "duration": 75,
+      "stage": "Drawdown",
+      "commentTemplate": "Aim to finish drawdown about 3:30, although go by taste"
+    }
+  ]
+}
