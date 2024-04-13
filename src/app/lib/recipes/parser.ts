@@ -2,8 +2,19 @@ import {BrewingRecipe, Recipe} from "@/app/lib/definitions";
 import {evalRecipeSchemaTemplateString} from "@/app/lib/recipes/utils";
 
 
-// todo take coffe amount into account!
-export const getBrewingRecipe = (rawRecipe: Recipe, totalWaterAmount: number): BrewingRecipe => {
+export const getBrewingRecipeUsingTotalWater = (rawRecipe: Recipe, totalWaterAmount: number): BrewingRecipe => {
+  let coffeeAmount = (rawRecipe.coffeeGramsPerLiter * totalWaterAmount) / 1000
+  return getBrewingRecipe(rawRecipe, totalWaterAmount, coffeeAmount)
+}
+
+export const getBrewingRecipeUsingCoffeeAmount = (rawRecipe: Recipe, coffeeAmount: number): BrewingRecipe => {
+  let totalWaterAmount = (coffeeAmount * 1000) / rawRecipe.coffeeGramsPerLiter
+  return getBrewingRecipe(rawRecipe, totalWaterAmount, coffeeAmount)
+}
+
+
+const getBrewingRecipe = (rawRecipe: Recipe, totalWaterAmount: number, coffeeAmount: number): BrewingRecipe => {
+
   try {
     const totalWaterPortions = rawRecipe.recipeSteps.reduce(
       (acc, {amount}) => acc + (amount ?? 0), 0
@@ -16,6 +27,8 @@ export const getBrewingRecipe = (rawRecipe: Recipe, totalWaterAmount: number): B
       name: rawRecipe.name,
       source: rawRecipe.source,
       description: rawRecipe.description,
+      coffeeAmount: coffeeAmount,
+      waterAmount: totalWaterAmount,
       brewingSteps: rawRecipe.recipeSteps.map((recipeStep) => {
         const stepWaterAmount = recipeStep.amount * portionMultiplier
         return {

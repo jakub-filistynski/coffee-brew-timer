@@ -15,6 +15,8 @@ export type BrewingRecipe = {
   name: string
   source: string
   description: string
+  coffeeAmount: number
+  waterAmount: number
   brewingSteps: Array<BrewingStep>
 }
 
@@ -31,5 +33,6 @@ export type Recipe = {
   name: string
   source: string
   description: string
+  coffeeGramsPerLiter: number
   recipeSteps: Array<RecipeStep>
 }

@@ -3,6 +3,7 @@
   "name": "A Better 1 Cup V60 Technique",
   "source": "https://www.youtube.com/watch?v=1oB1oDrDkHM",
   "description": "",
+  "coffeeGramsPerLiter": 60,
   "recipeSteps": [
     {
       "messageTemplate": "Add {stepWaterAmount} g of water in 10 seconds",

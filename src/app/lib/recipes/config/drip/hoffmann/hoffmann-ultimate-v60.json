@@ -3,6 +3,7 @@
   "name": "Ultimate V60 Technique",
   "source": "https://www.youtube.com/watch?v=AI4ynXzkSQo",
   "description": "",
+  "coffeeGramsPerLiter": 60,
   "recipeSteps": [
     {
       "messageTemplate": "Add {stepWaterAmount} g of water in 10 seconds",

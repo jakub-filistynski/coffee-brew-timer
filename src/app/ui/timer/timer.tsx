@@ -1,15 +1,12 @@
 "use client";
 
-import { BrewingStep } from "@/app/lib/definitions";
+import {BrewingRecipe, BrewingStep} from "@/app/lib/definitions";
 import { PauseResumeButton } from "@/app/ui/timer/pauseResumeButton";
 import { useStopwatch } from "react-timer-hook";
 import { useState, useEffect } from "react";
 
-type Props = {
-  steps: Array<BrewingStep>;
-};
 
-export function Timer({ steps }: Props) {
+export function Timer({ recipe } : BrewingRecipe) {
   const {
     totalSeconds,
     seconds,
@@ -22,6 +19,7 @@ export function Timer({ steps }: Props) {
     reset,
   } = useStopwatch({ autoStart: false });
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
+  const steps = recipe.brewingSteps
 
   useEffect(() => {
     let currentStep: BrewingStep = steps[currentStepIndex];
