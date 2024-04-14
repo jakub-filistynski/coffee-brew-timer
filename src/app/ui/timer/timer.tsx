@@ -6,7 +6,12 @@ import { useStopwatch } from "react-timer-hook";
 import { useState, useEffect } from "react";
 
 
-export function Timer({ recipe } : BrewingRecipe) {
+type Props = {
+  recipe: BrewingRecipe;
+};
+
+
+export function Timer({ recipe } : Props) {
   const {
     totalSeconds,
     seconds,
@@ -50,8 +55,7 @@ export function Timer({ recipe } : BrewingRecipe) {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="text-center space-y-5 flex flex-col">
+    <>
         <div className="text-4xl sm:text-6xl h-10 sm:h-16">
           {steps[currentStepIndex].stage ?
             `Stage: ${steps[currentStepIndex].stage}` : null
@@ -98,8 +102,7 @@ export function Timer({ recipe } : BrewingRecipe) {
             </button>
           </span>
         </div>
-        <div />
-      </div>
-    </div>
+      </>
+
   );
 }
