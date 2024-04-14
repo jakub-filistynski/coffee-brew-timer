@@ -6,7 +6,7 @@
   "coffeeGramsPerLiter": 60,
   "recipeSteps": [
     {
-      "messageTemplate": "Add {stepWaterAmount} g of water in 10 seconds",
+      "messageTemplate": "Add {stepWaterAmount}g of water in 10 seconds",
       "duration": 10,
       "amount": 60,
       "stage": "Bloom",
@@ -25,18 +25,18 @@
       "commentTemplate": "Enjoy CO2 getting released from grounds"
     },
     {
-      "messageTemplate": "Add {stepWaterAmount} g of water in 30 seconds",
+      "messageTemplate": "Add {stepWaterAmount}g of water in 30 seconds",
       "duration": 30,
       "amount": 240,
       "stage": "60% total water pour",
-      "commentTemplate": "Flow rate about {stepWaterAmount / 30} g/s"
+      "commentTemplate": "up to {waterAccumulator}g total. Flow rate about {stepWaterAmount / 30}g/s"
     },
     {
-      "messageTemplate": "Add {stepWaterAmount} g of water in 30 seconds",
+      "messageTemplate": "Add {stepWaterAmount}g of water in 30 seconds",
       "duration": 30,
       "amount": 200,
       "stage": "100% total water pour",
-      "commentTemplate": "Flow rate about {stepWaterAmount / 30} g/s"
+      "commentTemplate": "up to {waterAccumulator}g total. Flow rate about {stepWaterAmount / 30}g/s"
     },
     {
       "messageTemplate": "Stir 1x clockwise and 1x anticlockwise with spoon",

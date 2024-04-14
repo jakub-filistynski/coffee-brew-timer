@@ -12,7 +12,7 @@ export const getBrewingRecipeUsingCoffeeAmount = (rawRecipe: Recipe, coffeeAmoun
 }
 
 
-const evalRecipeSchemaTemplateString = (templateString: string | undefined, stepWaterAmount: number): string => {
+const evalRecipeSchemaTemplateString = (templateString: string | undefined, stepWaterAmount: number, waterAccumulator: number): string => {
   if (templateString == null) {
     return ""
   }
@@ -29,6 +29,7 @@ const getBrewingRecipe = (rawRecipe: Recipe, totalWaterAmount: number, coffeeAmo
     )
     const portionMultiplier = totalWaterAmount / totalWaterPortions
     let timeAccumulator = 0
+    let waterAccumulator = 0
 
     return {
       author: rawRecipe.author,
@@ -38,10 +39,11 @@ const getBrewingRecipe = (rawRecipe: Recipe, totalWaterAmount: number, coffeeAmo
       coffeeAmount: coffeeAmount,
       waterAmount: totalWaterAmount,
       brewingSteps: rawRecipe.recipeSteps.map((recipeStep) => {
-        const stepWaterAmount = recipeStep.amount * portionMultiplier
+        const stepWaterAmount = recipeStep.amount ? recipeStep.amount * portionMultiplier : 0
+        waterAccumulator += stepWaterAmount
         return {
-          message: evalRecipeSchemaTemplateString(recipeStep.messageTemplate, stepWaterAmount),
-          comment: evalRecipeSchemaTemplateString(recipeStep.commentTemplate, stepWaterAmount),
+          message: evalRecipeSchemaTemplateString(recipeStep.messageTemplate, stepWaterAmount, waterAccumulator),
+          comment: evalRecipeSchemaTemplateString(recipeStep.commentTemplate, stepWaterAmount, waterAccumulator),
           deadline: timeAccumulator += recipeStep.duration,
           stage: recipeStep.stage,
         }
