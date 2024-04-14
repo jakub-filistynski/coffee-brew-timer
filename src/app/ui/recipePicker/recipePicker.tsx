@@ -39,7 +39,7 @@ export function RecipePicker({ setBrewingRecipe, rawRecipesMap } : Props) {
           className="mt-1.5 w-1/3 rounded-lg border-black border-2 text-gray-700 sm:text-1xl h-8 sm:h-10"
           onChange={(e) => setRecipePicked(e.target.value)}
         >
-          <option value="">Pick recipe</option>
+          <option value="">Pick recipe:</option>
           {[...recipesConfigMap.keys()].map(key => {
             return <option value={key}>{key}</option>
           })}

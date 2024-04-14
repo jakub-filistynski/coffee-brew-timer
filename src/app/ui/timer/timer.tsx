@@ -4,14 +4,15 @@ import {BrewingRecipe, BrewingStep} from "@/app/lib/definitions";
 import { PauseResumeButton } from "@/app/ui/timer/pauseResumeButton";
 import { useStopwatch } from "react-timer-hook";
 import { useState, useEffect } from "react";
+import {addLeadingZeros} from "@/app/ui/utils";
 
 
 type Props = {
-  recipe: BrewingRecipe;
+  brewingRecipe: BrewingRecipe | undefined;
 };
 
 
-export function Timer({ recipe } : Props) {
+export function Timer({ brewingRecipe } : Props) {
   const {
     totalSeconds,
     seconds,
@@ -23,8 +24,19 @@ export function Timer({ recipe } : Props) {
     pause,
     reset,
   } = useStopwatch({ autoStart: false });
+  let steps = []
+  if (brewingRecipe === undefined) {
+    steps = [{message: "-", deadline: ""}]
+  }
+  else {
+    steps = brewingRecipe.brewingSteps
+  }
+
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
-  const steps = recipe.brewingSteps
+
+  useEffect(() => {
+        resetTimer()
+    },[brewingRecipe])
 
   useEffect(() => {
     let currentStep: BrewingStep = steps[currentStepIndex];
@@ -49,9 +61,13 @@ export function Timer({ recipe } : Props) {
     }
   };
 
-  const handleReset = () => {
+  const resetTimer = () => {
     setCurrentStepIndex(0);
     reset(undefined, false);
+  }
+
+  const handleReset = () => {
+    resetTimer()
   };
 
   return (
@@ -78,12 +94,13 @@ export function Timer({ recipe } : Props) {
             ? ""
             : steps[currentStepIndex + 1].message}
         </span>
-        <span className="sm:text-2xl text-xl">Total: {totalSeconds}</span>
+        <span className="sm:text-2xl text-xl">Total: {addLeadingZeros(minutes, 2)}:{addLeadingZeros(seconds, 2)}</span>
         <div>
           <span className="inline-flex -space-x-px overflow-hidden rounded-md border bg-white shadow-sm">
             {totalSeconds === 0 ? (
               <button
                 onClick={start}
+                disabled={brewingRecipe === undefined}
                 className="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative"
               >
                 Start

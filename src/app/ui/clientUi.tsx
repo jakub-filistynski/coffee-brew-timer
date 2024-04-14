@@ -15,13 +15,11 @@ type Props = {
 
 
 export function ClientUi({ rawRecipesMap } : Props) {
-  const [brewingRecipe, setBrewingRecipe] = useState(
-    getBrewingRecipeUsingTotalWater(rawRecipesMap.values().next().value, 250)
-  );
+  const [brewingRecipe, setBrewingRecipe] = useState(undefined);
   return (
     <div className="flex items-center text-center space-y-5 justify-center h-screen flex-col">
       <RecipePicker setBrewingRecipe={setBrewingRecipe} rawRecipesMap={rawRecipesMap}/>
-      <Timer recipe={brewingRecipe} />
+      <Timer brewingRecipe={brewingRecipe} />
     </div>
   );
 }
