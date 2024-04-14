@@ -5,7 +5,7 @@ import { Timer } from "@/app/ui/timer/timer";
 import {RecipePicker} from "@/app/ui/recipePicker/recipePicker";
 import {useState} from "react";
 import {Recipe} from "@/app/lib/definitions";
-import {getBrewingRecipeUsingTotalWater} from "@/app/ui/recipes/parser";
+import {getBrewingRecipeUsingTotalWater} from "@/app/lib/recipes/parser";
 
 
 type Props = {

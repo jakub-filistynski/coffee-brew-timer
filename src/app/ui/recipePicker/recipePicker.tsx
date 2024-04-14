@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import {recipesConfigMap} from "@/app/lib/recipes/recipes";
-import {getBrewingRecipeUsingCoffeeAmount, getBrewingRecipeUsingTotalWater} from "@/app/ui/recipes/parser";
+import {getBrewingRecipeUsingCoffeeAmount, getBrewingRecipeUsingTotalWater} from "@/app/lib/recipes/parser";
 import {BrewingRecipe, Recipe} from "@/app/lib/definitions";
 
 
@@ -22,6 +22,7 @@ export function RecipePicker({ setBrewingRecipe, rawRecipesMap } : Props) {
   const updateRecipeClicked = () => {
     if (recipePicked === "" || resourceAmountAsNumber === 0){
       alert("Pick recipe and input resources weight first!")
+      return
     }
     const recipe = rawRecipesMap.get(recipePicked)
     const parserFunction = resourceTypePicked? getBrewingRecipeUsingCoffeeAmount: getBrewingRecipeUsingTotalWater

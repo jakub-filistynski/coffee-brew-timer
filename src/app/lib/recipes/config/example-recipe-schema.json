@@ -7,7 +7,7 @@
   "recipeSteps": [
     {
       "messageTemplate": "Use curly brackets {stepWaterAmount} for variables",
-      "commentTemplate": "Currently only {stepWaterAmount} and {waterAccumulator}g variables are supported",
+      "commentTemplate": "Currently only {stepWaterAmount}, {waterAccumulator} and {flowRate} variables are supported",
       "duration": 10,
       "amount": 50,
       "stage": "Bloom"

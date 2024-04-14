@@ -10,7 +10,7 @@
       "duration": 10,
       "amount": 50,
       "stage": "Bloom",
-      "commentTemplate": "Flow rate about {stepWaterAmount / 10}g/s"
+      "commentTemplate": "Flow rate about {flowRate}g/s"
     },
     {
       "messageTemplate": "Swirl the drip for 5 seconds",
@@ -41,7 +41,7 @@
       "duration": 10,
       "amount": 50,
       "stage": "Third pour",
-      "commentTemplate": "up to {waterAccumulator}g total. Flow rate about {stepWaterAmount / 10}g/s"
+      "commentTemplate": "up to {waterAccumulator}g total. Flow rate about {flowRate}g/s"
     },
     {
       "messageTemplate": "Wait for 10 seconds",
@@ -53,7 +53,7 @@
       "duration": 10,
       "amount": 50,
       "stage": "4th pour",
-      "commentTemplate": "up to {waterAccumulator}g total. Flow rate about {stepWaterAmount / 10}g/s"
+      "commentTemplate": "up to {waterAccumulator}g total. Flow rate about {flowRate}g/s"
     },
     {
       "messageTemplate": "Wait for 10 seconds",
@@ -65,7 +65,7 @@
       "duration": 10,
       "amount": 50,
       "stage": "Last pour",
-      "commentTemplate": "Flow rate about {stepWaterAmount / 10}g/s"
+      "commentTemplate": "Flow rate about {flowRate}g/s"
     },
     {
       "messageTemplate": "Gentle swirl the drip for 5 seconds",
@@ -73,7 +73,7 @@
       "stage": "Drawdown"
     },
     {
-      "messageTemplate": "Wait for the water to flow",
+      "mess§ageTemplate": "Wait for the water to flow",
       "duration": 85,
       "stage": "Drawdown",
       "commentTemplate": "Drawdown should ideally finish around 2:30-3:30, but taste is the most important thing!"

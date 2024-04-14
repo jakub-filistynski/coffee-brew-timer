@@ -1,4 +1,5 @@
 import {BrewingRecipe, Recipe} from "@/app/lib/definitions";
+import {roundAndTruncate} from "@/app/ui/utils";
 
 
 export const getBrewingRecipeUsingTotalWater = (rawRecipe: Recipe, totalWaterAmount: number): BrewingRecipe => {
@@ -12,10 +13,19 @@ export const getBrewingRecipeUsingCoffeeAmount = (rawRecipe: Recipe, coffeeAmoun
 }
 
 
-const evalRecipeSchemaTemplateString = (templateString: string | undefined, stepWaterAmount: number, waterAccumulator: number): string => {
+const evalRecipeSchemaTemplateString = (
+  templateString: string | undefined,
+  stepWaterAmountRaw: number,
+  waterAccumulatorRaw: number,
+  stepDuration: number
+): string => {
   if (templateString == null) {
     return ""
   }
+  let flowRate = roundAndTruncate(stepWaterAmountRaw / stepDuration, 1)
+  let stepWaterAmount = roundAndTruncate(stepWaterAmountRaw, 1)
+  let waterAccumulator = roundAndTruncate(waterAccumulatorRaw, 1)
+
   let templateToEval = "`" + templateString.replaceAll("{", "${") + "`"
   return eval(templateToEval)
 }
@@ -42,8 +52,8 @@ const getBrewingRecipe = (rawRecipe: Recipe, totalWaterAmount: number, coffeeAmo
         const stepWaterAmount = recipeStep.amount ? recipeStep.amount * portionMultiplier : 0
         waterAccumulator += stepWaterAmount
         return {
-          message: evalRecipeSchemaTemplateString(recipeStep.messageTemplate, stepWaterAmount, waterAccumulator),
-          comment: evalRecipeSchemaTemplateString(recipeStep.commentTemplate, stepWaterAmount, waterAccumulator),
+          message: evalRecipeSchemaTemplateString(recipeStep.messageTemplate, stepWaterAmount, waterAccumulator, recipeStep.duration),
+          comment: evalRecipeSchemaTemplateString(recipeStep.commentTemplate, stepWaterAmount, waterAccumulator, recipeStep.duration),
           deadline: timeAccumulator += recipeStep.duration,
           stage: recipeStep.stage,
         }
