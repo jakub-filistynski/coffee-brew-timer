@@ -17,12 +17,3 @@ export const getRawRecipes = (): Map<string, Recipe> => {
   }
   return rawRecipesMap;
 }
-
-
-export const evalRecipeSchemaTemplateString = (templateString: string | undefined, stepWaterAmount: number): string => {
-  if (templateString == null) {
-    return ""
-  }
-  let templateToEval = "`" + templateString.replaceAll("{", "${") + "`"
-  return eval(templateToEval)
-}

@@ -1,5 +1,4 @@
 import {BrewingRecipe, Recipe} from "@/app/lib/definitions";
-import {evalRecipeSchemaTemplateString} from "@/app/lib/recipes/utils";
 
 
 export const getBrewingRecipeUsingTotalWater = (rawRecipe: Recipe, totalWaterAmount: number): BrewingRecipe => {
@@ -10,6 +9,15 @@ export const getBrewingRecipeUsingTotalWater = (rawRecipe: Recipe, totalWaterAmo
 export const getBrewingRecipeUsingCoffeeAmount = (rawRecipe: Recipe, coffeeAmount: number): BrewingRecipe => {
   let totalWaterAmount = (coffeeAmount * 1000) / rawRecipe.coffeeGramsPerLiter
   return getBrewingRecipe(rawRecipe, totalWaterAmount, coffeeAmount)
+}
+
+
+const evalRecipeSchemaTemplateString = (templateString: string | undefined, stepWaterAmount: number): string => {
+  if (templateString == null) {
+    return ""
+  }
+  let templateToEval = "`" + templateString.replaceAll("{", "${") + "`"
+  return eval(templateToEval)
 }
 
 
