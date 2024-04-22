@@ -4,12 +4,11 @@
 import { Timer } from "@/app/ui/timer/timer";
 import {RecipePicker} from "@/app/ui/recipePicker/recipePicker";
 import {useState} from "react";
-import {Recipe} from "@/app/lib/definitions";
-import {getBrewingRecipeUsingTotalWater} from "@/app/lib/recipes/parser";
+import {RecipeSchema} from "@/app/lib/definitions";
 
 
 type Props = {
-  rawRecipesMap: Map<string, Recipe>
+  rawRecipesMap: Map<string, RecipeSchema>
 }
 
 

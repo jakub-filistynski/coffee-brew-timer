@@ -1,14 +1,14 @@
-import {BrewingRecipe, Recipe} from "@/app/lib/definitions";
+import {BrewingRecipe, RecipeSchema} from "@/app/lib/definitions";
 import {roundAndTruncate} from "@/app/ui/utils";
 
 
-export const getBrewingRecipeUsingTotalWater = (rawRecipe: Recipe, totalWaterAmount: number): BrewingRecipe => {
-  let coffeeAmount = (rawRecipe.coffeeGramsPerLiter * totalWaterAmount) / 1000
+export const getBrewingRecipeUsingTotalWater = (rawRecipe: RecipeSchema, totalWaterAmount: number): BrewingRecipe => {
+  const coffeeAmount: number = (rawRecipe.coffeeGramsPerLiter * totalWaterAmount) / 1000
   return getBrewingRecipe(rawRecipe, totalWaterAmount, coffeeAmount)
 }
 
-export const getBrewingRecipeUsingCoffeeAmount = (rawRecipe: Recipe, coffeeAmount: number): BrewingRecipe => {
-  let totalWaterAmount = (coffeeAmount * 1000) / rawRecipe.coffeeGramsPerLiter
+export const getBrewingRecipeUsingCoffeeAmount = (rawRecipe: RecipeSchema, coffeeAmount: number): BrewingRecipe => {
+  const totalWaterAmount: number = (coffeeAmount * 1000) / rawRecipe.coffeeGramsPerLiter
   return getBrewingRecipe(rawRecipe, totalWaterAmount, coffeeAmount)
 }
 
@@ -22,24 +22,24 @@ const evalRecipeSchemaTemplateString = (
   if (templateString == null) {
     return ""
   }
-  let flowRate = roundAndTruncate(stepWaterAmountRaw / stepDuration, 1)
-  let stepWaterAmount = roundAndTruncate(stepWaterAmountRaw, 1)
-  let waterAccumulator = roundAndTruncate(waterAccumulatorRaw, 1)
+  const flowRate: number = roundAndTruncate(stepWaterAmountRaw / stepDuration, 1)
+  const stepWaterAmount: number = roundAndTruncate(stepWaterAmountRaw, 1)
+  const waterAccumulator: number = roundAndTruncate(waterAccumulatorRaw, 1)
 
-  let templateToEval = "`" + templateString.replaceAll("{", "${") + "`"
+  const templateToEval: string = "`" + templateString.replaceAll("{", "${") + "`"
   return eval(templateToEval)
 }
 
 
-const getBrewingRecipe = (rawRecipe: Recipe, totalWaterAmount: number, coffeeAmount: number): BrewingRecipe => {
+const getBrewingRecipe = (rawRecipe: RecipeSchema, totalWaterAmount: number, coffeeAmount: number): BrewingRecipe => {
 
   try {
-    const totalWaterPortions = rawRecipe.recipeSteps.reduce(
+    const totalWaterPortions: number = rawRecipe.recipeSteps.reduce(
       (acc, {amount}) => acc + (amount ?? 0), 0
     )
-    const portionMultiplier = totalWaterAmount / totalWaterPortions
-    let timeAccumulator = 0
-    let waterAccumulator = 0
+    const portionMultiplier: number = totalWaterAmount / totalWaterPortions
+    let timeAccumulator: number = 0
+    let waterAccumulator: number = 0
 
     return {
       author: rawRecipe.author,
@@ -49,7 +49,7 @@ const getBrewingRecipe = (rawRecipe: Recipe, totalWaterAmount: number, coffeeAmo
       coffeeAmount: coffeeAmount,
       waterAmount: totalWaterAmount,
       brewingSteps: rawRecipe.recipeSteps.map((recipeStep) => {
-        const stepWaterAmount = recipeStep.amount ? recipeStep.amount * portionMultiplier : 0
+        const stepWaterAmount: number = recipeStep.amount ? recipeStep.amount * portionMultiplier : 0
         waterAccumulator += stepWaterAmount
         return {
           message: evalRecipeSchemaTemplateString(recipeStep.messageTemplate, stepWaterAmount, waterAccumulator, recipeStep.duration),

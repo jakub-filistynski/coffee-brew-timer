@@ -3,12 +3,12 @@
 import React, { useState } from "react";
 import {recipesConfigMap} from "@/app/lib/recipes/recipes";
 import {getBrewingRecipeUsingCoffeeAmount, getBrewingRecipeUsingTotalWater} from "@/app/lib/recipes/parser";
-import {BrewingRecipe, Recipe} from "@/app/lib/definitions";
+import {BrewingRecipe, RecipeSchema} from "@/app/lib/definitions";
 
 
 type Props = {
   setBrewingRecipe: React.Dispatch<React.SetStateAction<BrewingRecipe>>;
-  rawRecipesMap: Map<string, Recipe>
+  rawRecipesMap: Map<string, RecipeSchema>
 };
 
 
@@ -16,7 +16,7 @@ export function RecipePicker({ setBrewingRecipe, rawRecipesMap } : Props) {
   const [resourceTypePicked, setResourceTypePicked] = useState(false);
   const [recipePicked, setRecipePicked] = useState("");
   const [resourceAmount, setResourceAmount] = useState("");
-  let resourceAmountAsNumber = Number(resourceAmount)
+  let resourceAmountAsNumber: number = Number(resourceAmount)
 
 
   const updateRecipeClicked = () => {
@@ -24,9 +24,9 @@ export function RecipePicker({ setBrewingRecipe, rawRecipesMap } : Props) {
       alert("Pick recipe and input resources weight first!")
       return
     }
-    const recipe = rawRecipesMap.get(recipePicked)
-    const parserFunction = resourceTypePicked? getBrewingRecipeUsingCoffeeAmount: getBrewingRecipeUsingTotalWater
-    let brewingRecipe = parserFunction(recipe, resourceAmountAsNumber)
+    const recipe: RecipeSchema = rawRecipesMap.get(recipePicked)
+    const parserFunction: Function = resourceTypePicked? getBrewingRecipeUsingCoffeeAmount: getBrewingRecipeUsingTotalWater
+    let brewingRecipe: BrewingRecipe = parserFunction(recipe, resourceAmountAsNumber)
     setBrewingRecipe(brewingRecipe)
   }
 
@@ -40,8 +40,8 @@ export function RecipePicker({ setBrewingRecipe, rawRecipesMap } : Props) {
           onChange={(e) => setRecipePicked(e.target.value)}
         >
           <option value="">Pick recipe:</option>
-          {[...recipesConfigMap.keys()].map(key => {
-            return <option value={key}>{key}</option>
+          {[...recipesConfigMap.keys()].map((key: string) => {
+            return <option key={key} value={key}>{key}</option>
           })}
         </select>
       </div>

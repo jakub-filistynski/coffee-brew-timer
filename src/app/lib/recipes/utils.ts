@@ -1,16 +1,16 @@
-import {Recipe} from "@/app/lib/definitions";
+import {RecipeSchema} from "@/app/lib/definitions";
 import fs from "fs";
 import {recipesConfigMap} from "@/app/lib/recipes/recipes";
 
-export const getRawRecipes = (): Map<string, Recipe> => {
-  const rawRecipesMap: Map<string, Recipe> = new Map();
-  const baseRecipeFolderPath = process.cwd() + "/src/app/lib/recipes/config"
+export const getRawRecipes = (): Map<string, RecipeSchema> => {
+  const rawRecipesMap: Map<string, RecipeSchema> = new Map();
+  const baseRecipeFolderPath: string = process.cwd() + "/src/app/lib/recipes/config"
 
   for (const [recipeName, filePath] of recipesConfigMap.entries()) {
     try {
-      const jsonData = fs.readFileSync(baseRecipeFolderPath + filePath, 'utf8');
-      const recipeData: Recipe = JSON.parse(jsonData);
-      rawRecipesMap.set(recipeName, recipeData);
+      const jsonData: string = fs.readFileSync(baseRecipeFolderPath + filePath, 'utf8');
+      const recipeSchema: RecipeSchema = JSON.parse(jsonData);
+      rawRecipesMap.set(recipeName, recipeSchema);
     } catch (error) {
       console.error(`Error loading recipe "${recipeName}":`, error);
     }

@@ -28,7 +28,7 @@ export type RecipeStep = {
   commentTemplate?: string
 }
 
-export type Recipe = {
+export type RecipeSchema = {
   author: string
   name: string
   source: string

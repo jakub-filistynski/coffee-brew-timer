@@ -24,9 +24,9 @@ export function Timer({ brewingRecipe } : Props) {
     pause,
     reset,
   } = useStopwatch({ autoStart: false });
-  let steps = []
+  let steps: BrewingStep[] = []
   if (brewingRecipe === undefined) {
-    steps = [{message: "-", deadline: ""}]
+    steps = [{message: "-", deadline: ""}] as BrewingStep[]
   }
   else {
     steps = brewingRecipe.brewingSteps
@@ -39,7 +39,7 @@ export function Timer({ brewingRecipe } : Props) {
     },[brewingRecipe])
 
   useEffect(() => {
-    let currentStep: BrewingStep = steps[currentStepIndex];
+    const currentStep: BrewingStep = steps[currentStepIndex];
     if (currentStepIndex === steps.length - 1) {
       return;
     }
