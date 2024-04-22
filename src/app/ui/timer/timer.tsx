@@ -35,7 +35,7 @@ export function Timer({ brewingRecipe } : Props) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
   useEffect(() => {
-        resetTimer()
+        handleResetTimer()
     },[brewingRecipe])
 
   useEffect(() => {
@@ -53,7 +53,7 @@ export function Timer({ brewingRecipe } : Props) {
     return !isRunning && totalSeconds !== 0;
   };
 
-  const handlePauseAndResume = () => {
+  const handlePauseAndResumeTimer = () => {
     if (isPaused()) {
       start();
     } else {
@@ -61,14 +61,10 @@ export function Timer({ brewingRecipe } : Props) {
     }
   };
 
-  const resetTimer = () => {
+  const handleResetTimer = () => {
     setCurrentStepIndex(0);
     reset(undefined, false);
   }
-
-  const handleReset = () => {
-    resetTimer()
-  };
 
   return (
     <>
@@ -107,12 +103,12 @@ export function Timer({ brewingRecipe } : Props) {
               </button>
             ) : (
               <PauseResumeButton
-                onClick={handlePauseAndResume}
+                onClick={handlePauseAndResumeTimer}
                 isTimerPaused={isPaused()}
               />
             )}
             <button
-              onClick={handleReset}
+              onClick={handleResetTimer}
               className="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative"
             >
               Reset
