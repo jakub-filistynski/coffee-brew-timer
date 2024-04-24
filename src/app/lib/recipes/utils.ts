@@ -1,9 +1,12 @@
-import {RecipeSchema} from "@/app/lib/definitions";
+"use server"
+
+import {RawRecipesMap, RecipeSchema} from "@/app/lib/definitions";
 import fs from "fs";
 import {recipesConfigMap} from "@/app/lib/recipes/recipes";
 
-export const getRawRecipes = (): Map<string, RecipeSchema> => {
-  const rawRecipesMap: Map<string, RecipeSchema> = new Map();
+
+export const getRawRecipes = async (): Promise<RawRecipesMap> => {
+  const rawRecipesMap: RawRecipesMap = new Map();
   const baseRecipeFolderPath: string = process.cwd() + "/src/app/lib/recipes/config"
 
   for (const [recipeName, filePath] of recipesConfigMap.entries()) {

@@ -1,22 +1,31 @@
 "use client";
 
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import {recipesConfigMap} from "@/app/lib/recipes/recipes";
 import {getBrewingRecipeUsingCoffeeAmount, getBrewingRecipeUsingTotalWater} from "@/app/lib/recipes/parser";
-import {BrewingRecipe, RecipeSchema} from "@/app/lib/definitions";
+import {BrewingRecipe, RawRecipesMap, RecipeSchema} from "@/app/lib/definitions";
+import {getRawRecipes} from "@/app/lib/recipes/utils";
 
 
 type Props = {
   setBrewingRecipe: React.Dispatch<React.SetStateAction<BrewingRecipe>>;
-  rawRecipesMap: Map<string, RecipeSchema>
 };
 
-
-export function RecipePicker({ setBrewingRecipe, rawRecipesMap } : Props) {
+export function RecipePicker({ setBrewingRecipe } : Props) {
   const [resourceTypePicked, setResourceTypePicked] = useState(false);
   const [recipePicked, setRecipePicked] = useState("");
   const [resourceAmount, setResourceAmount] = useState("");
   let resourceAmountAsNumber: number = Number(resourceAmount)
+
+  const [rawRecipesMap, setRawRecipesMap] = useState(new Map())
+
+  useEffect(() => {
+    const fetchRecipes = async (): Promise<RawRecipesMap> => {
+      const rawRecipes = await getRawRecipes()
+      setRawRecipesMap(rawRecipes)
+    }
+    fetchRecipes()
+  },[])
 
 
   const updateRecipeClicked = () => {
@@ -81,14 +90,12 @@ export function RecipePicker({ setBrewingRecipe, rawRecipesMap } : Props) {
         />
       </label>
 
-
       <button
         className="rounded border border-black px-12 py-3 text-sm font-medium text-black hover:bg-black hover:text-white focus:outline-none focus:ring active:bg-slate-600 w-1/8"
         onClick={() => updateRecipeClicked()}
       >
         Update
       </button>
-
     </>
   );
 }

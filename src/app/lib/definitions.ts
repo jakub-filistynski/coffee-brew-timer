@@ -36,3 +36,5 @@ export type RecipeSchema = {
   coffeeGramsPerLiter: number
   recipeSteps: Array<RecipeStep>
 }
+
+export type RawRecipesMap = Map<string, RecipeSchema>

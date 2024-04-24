@@ -1,10 +1,18 @@
-import {ClientUi} from "@/app/ui/clientUi";
-import {getRawRecipes} from "@/app/lib/recipes/utils";
+"use client"
+
+import {useState} from "react";
+import {RecipePicker} from "@/app/ui/recipePicker/recipePicker";
+import {Timer} from "@/app/ui/timer/timer";
 
 export default function Home() {
+  const [brewingRecipe, setBrewingRecipe] = useState(undefined);
+
   return (
     <main>
-      <ClientUi rawRecipesMap={getRawRecipes()}/>
+      <div className="flex items-center text-center space-y-5 justify-center h-screen flex-col">
+        <RecipePicker setBrewingRecipe={setBrewingRecipe}/>
+        <Timer brewingRecipe={brewingRecipe} />
+      </div>
     </main>
   );
 }

@@ -22,8 +22,11 @@ const evalRecipeSchemaTemplateString = (
   if (templateString == null) {
     return ""
   }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const flowRate: number = roundAndTruncate(stepWaterAmountRaw / stepDuration, 1)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const stepWaterAmount: number = roundAndTruncate(stepWaterAmountRaw, 1)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const waterAccumulator: number = roundAndTruncate(waterAccumulatorRaw, 1)
 
   const templateToEval: string = "`" + templateString.replaceAll("{", "${") + "`"
