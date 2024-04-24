@@ -21,7 +21,7 @@ export function RecipePicker({ setBrewingRecipe } : Props) {
 
   useEffect(() => {
     const fetchRecipes = async (): Promise<RawRecipesMap> => {
-      const rawRecipes = await getRawRecipes()
+      const rawRecipes: RawRecipesMap = await getRawRecipes()
       setRawRecipesMap(rawRecipes)
     }
     fetchRecipes()
