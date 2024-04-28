@@ -1,30 +1,43 @@
 "use client";
 
-import { Step } from "@/app/lib/definitions";
+import {BrewingRecipe, BrewingStep} from "@/app/lib/definitions";
 import { PauseResumeButton } from "@/app/ui/timer/pauseResumeButton";
 import { useStopwatch } from "react-timer-hook";
 import { useState, useEffect } from "react";
+import {addLeadingZeros} from "@/app/ui/utils";
+
 
 type Props = {
-  steps: Array<Step>;
+  brewingRecipe: BrewingRecipe | undefined;
 };
 
-export function Timer({ steps }: Props) {
+
+export function Timer({ brewingRecipe } : Props) {
   const {
     totalSeconds,
     seconds,
     minutes,
-    hours,
-    days,
     isRunning,
     start,
     pause,
     reset,
   } = useStopwatch({ autoStart: false });
+  let steps: BrewingStep[] = []
+  if (brewingRecipe === undefined) {
+    steps = [{message: "-", deadline: ""}] as BrewingStep[]
+  }
+  else {
+    steps = brewingRecipe.brewingSteps
+  }
+
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
   useEffect(() => {
-    let currentStep: Step = steps[currentStepIndex];
+        handleReset()
+    },[brewingRecipe])
+
+  useEffect(() => {
+    const currentStep: BrewingStep = steps[currentStepIndex];
     if (currentStepIndex === steps.length - 1) {
       return;
     }
@@ -52,8 +65,7 @@ export function Timer({ steps }: Props) {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="text-center space-y-5 flex flex-col">
+    <>
         <div className="text-4xl sm:text-6xl h-10 sm:h-16">
           {steps[currentStepIndex].stage ?
             `Stage: ${steps[currentStepIndex].stage}` : null
@@ -72,16 +84,17 @@ export function Timer({ steps }: Props) {
         </div>
         <span className="text-2xl sm:text-4xl ">
           <b>Next step: </b>{" "}
-          {currentStepIndex === steps.length
+          {currentStepIndex + 1 === steps.length
             ? ""
             : steps[currentStepIndex + 1].message}
         </span>
-        <span className="sm:text-2xl text-xl">Total: {totalSeconds}</span>
+        <span className="sm:text-2xl text-xl">Total: {addLeadingZeros(minutes, 2)}:{addLeadingZeros(seconds, 2)}</span>
         <div>
           <span className="inline-flex -space-x-px overflow-hidden rounded-md border bg-white shadow-sm">
             {totalSeconds === 0 ? (
               <button
                 onClick={start}
+                disabled={brewingRecipe === undefined}
                 className="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative"
               >
                 Start
@@ -100,8 +113,7 @@ export function Timer({ steps }: Props) {
             </button>
           </span>
         </div>
-        <div />
-      </div>
-    </div>
+      </>
+
   );
 }
