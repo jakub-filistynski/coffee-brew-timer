@@ -1,8 +1,8 @@
-import { Step } from "@/app/lib/definitions";
+import { BrewingStep } from "@/app/lib/definitions";
 
 export const getHoffmanMethoSteps = (
   readyCoffeeMilliliters: number,
-): Array<Step> => {
+): Array<BrewingStep> => {
   // 1 ml ≈ 1 g, so we can use the same numeric value for water grams here.
   const totalWater = Math.round(readyCoffeeMilliliters);
   // There are 5 pour steps in this recipe; split the total water evenly.
