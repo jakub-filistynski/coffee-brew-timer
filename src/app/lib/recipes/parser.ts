@@ -64,5 +64,6 @@ const getBrewingRecipe = (rawRecipe: RecipeSchema, totalWaterAmount: number, cof
     }
   } catch (error) {
     console.error(`Error processing recipe "${rawRecipe.name}":`, error);
+    throw error;
   }
 }
