@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Coffee Brew Timer
 
-## Getting Started
+Simple brew assistant for the Hoffman drip method, built with Next.js.
 
-First, run the development server:
+## Features
+
+- Step-by-step brew timer with deadlines
+- Two input modes:
+  - total amount of ready coffee (`ml`)
+  - amount of used coffee / beans (`g`)
+- Automatic water calculation for the recipe
+- Responsive UI with feature-scoped CSS Modules
+- Unit tests for recipe generation logic
+
+## Tech stack
+
+- Next.js 14
+- React 18
+- TypeScript
+- Tailwind (base setup)
+- Vitest (unit tests)
+
+## Project structure
+
+Main application code lives under `src/app`:
+
+- `features/brew-timer/` - UI feature module
+  - `BrewTimerHome.tsx`
+  - `Timer.tsx`
+  - `PauseResumeButton.tsx`
+  - `*.module.css`
+- `lib/recipies/drip/hoffman.ts` - recipe step generation logic
+- `page.tsx` - app entry page
+
+## Getting started
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+npm run dev        # start local dev server
+npm run build      # production build
+npm run start      # run production server
+npm run lint       # lint code
+npm run test       # run unit tests once
+npm run test:watch # run tests in watch mode
+```
 
-## Learn More
+## Testing
 
-To learn more about Next.js, take a look at the following resources:
+Unit tests are written with Vitest.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Current tests: `src/app/lib/recipies/drip/hoffman.test.ts`
+- Focus: recipe shape, deadlines, per-pour water calculation, rounding behavior
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Run:
 
-## Deploy on Vercel
+```bash
+npm run test
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Notes / roadmap
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- PWA support is planned (manifest + installable experience + offline behavior)
+- Recommended next tests:
+  - component tests (input mode switching, displayed values)
+  - end-to-end flow tests (start/pause/reset, step progression)

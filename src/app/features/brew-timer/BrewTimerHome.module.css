@@ -1,0 +1,95 @@
+.page {
+  min-height: 100vh;
+  background: rgb(241 245 249);
+}
+
+.container {
+  width: 100%;
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 1rem;
+}
+
+.card {
+  margin-bottom: 1rem;
+  border: 1px solid rgb(226 232 240);
+  border-radius: 1rem;
+  background: #fff;
+  padding: 1.25rem;
+  box-shadow: 0 1px 2px 0 rgb(15 23 42 / 0.08);
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(100 116 139);
+}
+
+.title {
+  margin-top: 0.25rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  color: rgb(15 23 42);
+}
+
+.subtitle {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgb(71 85 105);
+}
+
+.label {
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: rgb(51 65 85);
+}
+
+.label + .label {
+  margin-top: 1rem;
+}
+
+.field {
+  display: block;
+  width: 100%;
+  margin-top: 0.5rem;
+  border: 1px solid rgb(203 213 225);
+  border-radius: 0.5rem;
+  background: #fff;
+  padding: 0.625rem 0.75rem;
+  font-size: 1rem;
+  color: rgb(15 23 42);
+  box-shadow: 0 1px 2px 0 rgb(15 23 42 / 0.06);
+}
+
+.field:focus {
+  outline: 1px solid rgb(100 116 139);
+  border-color: rgb(100 116 139);
+}
+
+.helper {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgb(71 85 105);
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-top: 2.5rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+}
