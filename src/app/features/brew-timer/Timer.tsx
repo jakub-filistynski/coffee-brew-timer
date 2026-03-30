@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { useStopwatch } from "react-timer-hook";
-import { Step } from "@/app/lib/definitions";
+import type { BrewingStep } from "@/app/lib/definitions";
 import { PauseResumeButton } from "@/app/features/brew-timer/PauseResumeButton";
 import styles from "@/app/features/brew-timer/Timer.module.css";
 
 type Props = {
-  steps: Array<Step>;
+  steps: Array<BrewingStep>;
 };
 
 export function Timer({ steps }: Props) {
@@ -17,7 +17,7 @@ export function Timer({ steps }: Props) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
   useEffect(() => {
-    const currentStep: Step = steps[currentStepIndex];
+    const currentStep: BrewingStep = steps[currentStepIndex];
     if (currentStepIndex === steps.length - 1) {
       return;
     }
