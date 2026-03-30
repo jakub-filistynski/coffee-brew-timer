@@ -1,0 +1,133 @@
+.section {
+  width: 100%;
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 0 1rem 2.5rem;
+}
+
+.card {
+  border: 1px solid rgb(226 232 240);
+  border-radius: 1rem;
+  background: #fff;
+  padding: 1.25rem;
+  box-shadow: 0 1px 2px 0 rgb(15 23 42 / 0.08);
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(100 116 139);
+}
+
+.currentStep {
+  margin-top: 0.5rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  color: rgb(15 23 42);
+}
+
+.stats {
+  margin-top: 1.25rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.statCard {
+  border-radius: 0.75rem;
+  background: rgb(248 250 252);
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(100 116 139);
+}
+
+.statValue {
+  margin-top: 0.25rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  color: rgb(15 23 42);
+}
+
+.nextStepCard {
+  margin-top: 1.25rem;
+  border: 1px dashed rgb(203 213 225);
+  border-radius: 0.75rem;
+  background: rgb(248 250 252);
+  padding: 0.75rem;
+}
+
+.nextStepText {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: rgb(51 65 85);
+}
+
+.controls {
+  margin-top: 1.5rem;
+}
+
+.controlGroup {
+  display: inline-flex;
+  overflow: hidden;
+  border: 1px solid rgb(203 213 225);
+  border-radius: 0.5rem;
+  background: #fff;
+  box-shadow: 0 1px 2px 0 rgb(15 23 42 / 0.08);
+}
+
+.startButton {
+  min-width: 6rem;
+  border: 0;
+  background: transparent;
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  color: rgb(30 41 59);
+  cursor: pointer;
+}
+
+.startButton:hover {
+  background: rgb(248 250 252);
+}
+
+.resetButton {
+  min-width: 6rem;
+  border: 0;
+  border-left: 1px solid rgb(203 213 225);
+  background: transparent;
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  color: rgb(51 65 85);
+  cursor: pointer;
+}
+
+.resetButton:hover {
+  background: rgb(248 250 252);
+}
+
+@media (min-width: 640px) {
+  .card {
+    padding: 1.5rem;
+  }
+
+  .currentStep {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+}
