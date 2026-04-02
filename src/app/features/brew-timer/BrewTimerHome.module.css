@@ -79,6 +79,108 @@
   color: rgb(71 85 105);
 }
 
+.accordionToggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 1.25rem;
+  border: 1px solid rgb(226 232 240);
+  border-radius: 0.5rem;
+  background: transparent;
+  padding: 0.625rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgb(51 65 85);
+  cursor: pointer;
+  text-align: left;
+}
+
+.accordionToggle:hover {
+  background: rgb(248 250 252);
+}
+
+[aria-expanded="true"].accordionToggle {
+  border-radius: 0.5rem 0.5rem 0 0;
+  border-bottom-color: transparent;
+}
+
+.chevronDown {
+  font-size: 1.125rem;
+  line-height: 1;
+  transform: rotate(90deg);
+  display: inline-block;
+}
+
+.chevronUp {
+  font-size: 1.125rem;
+  line-height: 1;
+  transform: rotate(-90deg);
+  display: inline-block;
+}
+
+.recipeList {
+  margin-top: 0.25rem;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+  border: 1px solid rgb(226 232 240);
+  border-top: 0;
+  border-radius: 0 0 0.5rem 0.5rem;
+  padding: 0 0.75rem;
+}
+
+.recipeStep {
+  counter-increment: step;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgb(241 245 249);
+  font-size: 0.875rem;
+  color: rgb(51 65 85);
+}
+
+.recipeStep::before {
+  content: counter(step);
+  flex-shrink: 0;
+  width: 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgb(148 163 184);
+  text-align: right;
+}
+
+.recipeStepMessage {
+  flex: 1;
+}
+
+.recipeStepTime {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: rgb(148 163 184);
+}
+
+.startButton {
+  margin-top: 1.25rem;
+  width: 100%;
+  border: 0;
+  border-radius: 0.5rem;
+  background: rgb(15 23 42);
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+}
+
+.startButton:hover {
+  background: rgb(30 41 59);
+}
+
 @media (min-width: 640px) {
   .container {
     padding-top: 2.5rem;

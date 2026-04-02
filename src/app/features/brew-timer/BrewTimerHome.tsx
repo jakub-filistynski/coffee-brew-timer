@@ -17,6 +17,12 @@ function toValidPositiveNumber(value: string, fallback: number): number {
   return parsed;
 }
 
+function formatDeadline(seconds: number): string {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return `${m}:${String(s).padStart(2, "0")}`;
+}
+
 export function BrewTimerHome() {
   const [inputMode, setInputMode] = useState<InputMode>("readyCoffee");
   const [readyCoffeeMillilitersInput, setReadyCoffeeMillilitersInput] =
@@ -24,6 +30,8 @@ export function BrewTimerHome() {
   const [usedCoffeeGramsInput, setUsedCoffeeGramsInput] = useState(
     String(DEFAULT_USED_COFFEE_GRAMS),
   );
+  const [timerStarted, setTimerStarted] = useState(false);
+  const [recipeOpen, setRecipeOpen] = useState(false);
 
   const readyCoffeeMilliliters = useMemo(
     () =>
@@ -59,49 +67,83 @@ export function BrewTimerHome() {
           <p className={styles.subtitle}>Set your input mode and start brewing.</p>
         </header>
 
-        <section className={styles.card}>
-          <label className={styles.label}>
-            Input mode
-            <select
-              value={inputMode}
-              onChange={(e) => setInputMode(e.target.value as InputMode)}
-              className={styles.field}
-            >
-              <option value="readyCoffee">Total amount of coffee</option>
-              <option value="usedCoffee">Amount of used coffee (beans)</option>
-            </select>
-          </label>
+        {!timerStarted && (
+          <section className={styles.card}>
+            <label className={styles.label}>
+              Input mode
+              <select
+                value={inputMode}
+                onChange={(e) => setInputMode(e.target.value as InputMode)}
+                className={styles.field}
+              >
+                <option value="readyCoffee">Total amount of coffee</option>
+                <option value="usedCoffee">Amount of used coffee (beans)</option>
+              </select>
+            </label>
 
-          <label className={styles.label}>
-            {inputMode === "readyCoffee" ? "Ready coffee (ml)" : "Used coffee (g)"}
-            <input
-              type="number"
-              min={1}
-              step={1}
-              inputMode="numeric"
-              value={
-                inputMode === "readyCoffee"
-                  ? readyCoffeeMillilitersInput
-                  : usedCoffeeGramsInput
-              }
-              onChange={(e) => {
-                if (inputMode === "readyCoffee") {
-                  setReadyCoffeeMillilitersInput(e.target.value);
-                  return;
+            <label className={styles.label}>
+              {inputMode === "readyCoffee" ? "Ready coffee (ml)" : "Used coffee (g)"}
+              <input
+                type="number"
+                min={1}
+                step={1}
+                inputMode="numeric"
+                value={
+                  inputMode === "readyCoffee"
+                    ? readyCoffeeMillilitersInput
+                    : usedCoffeeGramsInput
                 }
-                setUsedCoffeeGramsInput(e.target.value);
-              }}
-              className={styles.field}
-            />
-          </label>
+                onChange={(e) => {
+                  if (inputMode === "readyCoffee") {
+                    setReadyCoffeeMillilitersInput(e.target.value);
+                    return;
+                  }
+                  setUsedCoffeeGramsInput(e.target.value);
+                }}
+                className={styles.field}
+              />
+            </label>
 
-          <p className={styles.helper}>
-            Using {totalWaterMilliliters} ml total water to calculate the recipe.
-          </p>
-        </section>
+            <p className={styles.helper}>
+              Using {totalWaterMilliliters} ml total water to calculate the recipe.
+            </p>
+
+            <button
+              onClick={() => setRecipeOpen((o) => !o)}
+              className={styles.accordionToggle}
+              aria-expanded={recipeOpen}
+            >
+              {recipeOpen ? "Hide recipe" : "Show recipe"}
+              <span className={recipeOpen ? styles.chevronUp : styles.chevronDown} aria-hidden>›</span>
+            </button>
+
+            {recipeOpen && (
+              <ol className={styles.recipeList}>
+                {steps.map((step, i) => (
+                  <li key={i} className={styles.recipeStep}>
+                    <span className={styles.recipeStepMessage}>{step.message}</span>
+                    <span className={styles.recipeStepTime}>{formatDeadline(step.deadline)}</span>
+                  </li>
+                ))}
+              </ol>
+            )}
+
+            <button
+              onClick={() => setTimerStarted(true)}
+              className={styles.startButton}
+            >
+              Start Brewing
+            </button>
+          </section>
+        )}
       </div>
 
-      <Timer steps={steps} />
+      {timerStarted && (
+        <Timer
+          steps={steps}
+          onReset={() => setTimerStarted(false)}
+        />
+      )}
     </main>
   );
 }

@@ -8,9 +8,10 @@ import styles from "@/app/features/brew-timer/Timer.module.css";
 
 type Props = {
   steps: Array<BrewingStep>;
+  onReset?: () => void;
 };
 
-export function Timer({ steps }: Props) {
+export function Timer({ steps, onReset }: Props) {
   const { totalSeconds, isRunning, start, pause, reset } = useStopwatch({
     autoStart: false,
   });
@@ -40,6 +41,7 @@ export function Timer({ steps }: Props) {
   const handleReset = () => {
     setCurrentStepIndex(0);
     reset(undefined, false);
+    onReset?.();
   };
 
   const currentStep = steps[currentStepIndex];
