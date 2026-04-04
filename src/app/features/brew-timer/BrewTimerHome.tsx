@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { getHoffmanMethoSteps } from "@/app/lib/recipies/drip/hoffman";
+import { PwaInstallPrompt } from "@/app/features/brew-timer/PwaInstallPrompt";
 import { Timer } from "@/app/features/brew-timer/Timer";
 import styles from "@/app/features/brew-timer/BrewTimerHome.module.css";
 
@@ -56,8 +57,12 @@ export function BrewTimerHome() {
         <header className={styles.card}>
           <p className={styles.eyebrow}>Coffee Brew Timer</p>
           <h1 className={styles.title}>Hoffman Drip Method</h1>
-          <p className={styles.subtitle}>Set your input mode and start brewing.</p>
+          <p className={styles.subtitle}>
+            Set your input mode and start brewing.
+          </p>
         </header>
+
+        <PwaInstallPrompt />
 
         <section className={styles.card}>
           <label className={styles.label}>
@@ -73,7 +78,9 @@ export function BrewTimerHome() {
           </label>
 
           <label className={styles.label}>
-            {inputMode === "readyCoffee" ? "Ready coffee (ml)" : "Used coffee (g)"}
+            {inputMode === "readyCoffee"
+              ? "Ready coffee (ml)"
+              : "Used coffee (g)"}
             <input
               type="number"
               min={1}
@@ -96,7 +103,8 @@ export function BrewTimerHome() {
           </label>
 
           <p className={styles.helper}>
-            Using {totalWaterMilliliters} ml total water to calculate the recipe.
+            Using {totalWaterMilliliters} ml total water to calculate the
+            recipe.
           </p>
         </section>
       </div>
