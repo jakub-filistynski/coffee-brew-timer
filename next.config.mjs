@@ -1,7 +1,12 @@
+const basePath = process.env.BASE_PATH ?? "";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: process.env.BASE_PATH,
-  output: "export",  // <=== enables static exports
+  ...(basePath ? { basePath } : {}),
+  output: "export",
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
 };
 
 export default nextConfig;

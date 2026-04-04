@@ -79,6 +79,84 @@
   color: rgb(71 85 105);
 }
 
+.installCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgb(191 219 254);
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgb(239 246 255), rgb(240 253 250));
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 2px 0 rgb(15 23 42 / 0.05);
+}
+
+.installEyebrow {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgb(14 116 144);
+}
+
+.installTitle {
+  margin-top: 0.25rem;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  font-weight: 700;
+  color: rgb(15 23 42);
+}
+
+.installText {
+  margin-top: 0.375rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgb(51 65 85);
+}
+
+.installActions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.installButton {
+  align-self: flex-start;
+  border: 0;
+  border-radius: 9999px;
+  background: rgb(15 23 42);
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+}
+
+.installButton:hover {
+  background: rgb(30 41 59);
+}
+
+.installBadge {
+  display: inline-flex;
+  align-self: flex-start;
+  border-radius: 9999px;
+  background: rgb(15 23 42);
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.installHint {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: rgb(71 85 105);
+}
+
 @media (min-width: 640px) {
   .container {
     padding-top: 2.5rem;
@@ -86,6 +164,13 @@
 
   .card {
     padding: 1.5rem;
+  }
+
+  .installCard {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
   }
 
   .title {
